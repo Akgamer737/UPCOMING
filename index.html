@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Squid Game: Season 2 Countdown</title>
+  <style>
+    /* General styles */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      animation: slideIn 1.5s ease-out;
+    }
+
+    .movie-cover {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      animation: pulse 2s infinite;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #00f3ff;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      animation: glow 2s infinite;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #03e9f4;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #03e9f4;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #ffcccb;
+    }
+
+    /* Countdown Timer */
+    #countdown {
+      font-size: 2rem;
+      color: #03e9f4;
+      background: linear-gradient(to right, #03e9f4, #00f3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 20px;
+      display: inline-block;
+      animation: zoomInOut 1.5s infinite;
+    }
+
+    /* Animations */
+    @keyframes slideIn {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 10px #03e9f4, 0 0 20px #03e9f4, 0 0 30px #00f3ff;
+      }
+      50% {
+        text-shadow: 0 0 20px #03e9f4, 0 0 40px #00f3ff, 0 0 50px #00f3ff;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes zoomInOut {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Background floating dots */
+    .floating-dots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .floating-dots span {
+      position: absolute;
+      display: block;
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 12s linear infinite;
+    }
+
+    .floating-dots span:nth-child(odd) {
+      background: rgba(0, 255, 255, 0.15);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNK4hiNXGwX6Hm3OzZDEKyaL6LB_sqo6gYXsaa4xZmQLrY0ehJys8CurI&s=10" 
+         alt="Squid Game Season 2 Cover" class="movie-cover">
+    <h1>Upcoming</h1>
+    <h2>Squid Game: Season 2</h2>
+    <p>Releasing on: <strong>26th December 2024</strong></p>
+    <div id="countdown">Loading...</div>
+  </div>
+
+  <!-- Floating dots -->
+  <div class="floating-dots">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <script>
+    // Countdown Timer Logic
+    const releaseDate = new Date("2024-12-26T00:00:00").getTime(); // Set the release date
+
+    function updateCountdown() {
+      const now = new Date().getTime(); // Get the current time
+      const timeLeft = releaseDate - now; // Calculate time left until the release date
+
+      if (timeLeft <= 0) {
+        document.getElementById("countdown").innerText = "The movie is now available!";
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000)) / 1000);
+
+      // Update the countdown display
+      document.getElementById("countdown").innerHTML = `
+        ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
+      `;
+    }
+
+    // Call updateCountdown every second
+    setInterval(updateCountdown, 1000);
+
+    // Initialize the countdown on page load
+    updateCountdown();
+  </script>
+</body>
+</html>
